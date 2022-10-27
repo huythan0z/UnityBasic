@@ -1,0 +1,4 @@
+repository "UnityBasic@devfast1@cloud"
+  path "/"
+    br "/main"
+    co "/main"
