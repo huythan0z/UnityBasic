@@ -7,6 +7,7 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody objRigitBody;
     Animator aniCharacter;
+    [Range(0.0f, 10.0f)]
     float speed = 5.0f;
     void Start()
     {
@@ -18,6 +19,9 @@ public class Move : MonoBehaviour
     void Update()
     {
 
+    }
+    void FixedUpdate()
+    {
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             aniCharacter.SetBool("Run", false);
@@ -32,25 +36,33 @@ public class Move : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             //objRigitBody.AddForce(new Vector3(0, 0, 1), ForceMode.VelocityChange);
-            //aniCharacter.SetTrigger("Run");
-            transform.position += Vector3.forward * Time.deltaTime * speed;
+            //transform.position += Vector3.forward * Time.deltaTime * speed;
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 5), ForceMode.VelocityChange);
+            transform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(Vector3.forward);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += Vector3.back * Time.deltaTime * speed;
+            //transform.position += Vector3.back * Time.deltaTime * speed;
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -5), ForceMode.VelocityChange);
+            transform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(Vector3.back);
+
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * Time.deltaTime * speed;
+            //transform.position += Vector3.right * Time.deltaTime * speed;
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
+            transform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(Vector3.right);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * Time.deltaTime * speed;
+            //transform.position += Vector3.left * Time.deltaTime * speed;
+            transform.GetComponent<Rigidbody>().AddForce(new Vector3(-5, 0, 0), ForceMode.VelocityChange);
+            transform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(Vector3.left);
+
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            objRigitBody.AddForce(new Vector3(0, 1, 0), ForceMode.VelocityChange);
+            objRigitBody.AddForce(new Vector3(0, 5, 0), ForceMode.VelocityChange);
         }
-
     }
 }

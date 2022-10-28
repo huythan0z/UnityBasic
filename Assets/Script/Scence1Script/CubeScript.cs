@@ -10,7 +10,7 @@ public class CubeScript : MonoBehaviour
     {
         //transform.localScale = new Vector3(1, 2, 1);
         AudioSource[] audioSources = GameObject.Find("AudioFile").GetComponents<AudioSource>();
-        audioSources[1].Play();
+       // audioSources[0].Play();
     }
 
     // Update is called once per frame
